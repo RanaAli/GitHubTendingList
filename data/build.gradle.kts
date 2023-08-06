@@ -1,6 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
@@ -9,11 +9,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.rana.data"
         minSdk = 21
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -46,7 +42,6 @@ dependencies {
     implementation(libs.retrofit.okhttp3)
     implementation(libs.retrofit.gson)
     implementation(libs.retrofit.okhttp3.logging.interceptor)
-    implementation(project(mapOf("path" to ":domain")))
 
     testImplementation(libs.testing.junit)
     testImplementation(libs.kotlinx.coroutines.test)

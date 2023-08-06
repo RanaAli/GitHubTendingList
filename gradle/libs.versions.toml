@@ -53,6 +53,7 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+com-android-library = { id = "com.android.library", version.ref = "agp" }
 
 
 [bundles]

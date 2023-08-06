@@ -4,4 +4,5 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.9.0" apply false
     id("com.github.ben-manes.versions") version "0.47.0"
     alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
+    alias(libs.plugins.com.android.library) apply false
 }
