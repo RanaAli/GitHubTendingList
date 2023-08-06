@@ -1,4 +1,4 @@
-package com.rana.data.models.entity
+package com.rana.domain.entity
 
 data class RepositoryItemEntity(
     val name: String = "",

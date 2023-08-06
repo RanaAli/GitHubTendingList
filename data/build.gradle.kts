@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.retrofit.okhttp3)
     implementation(libs.retrofit.gson)
     implementation(libs.retrofit.okhttp3.logging.interceptor)
+    implementation(project(mapOf("path" to ":domain")))
 
     testImplementation(libs.testing.junit)
     testImplementation(libs.kotlinx.coroutines.test)

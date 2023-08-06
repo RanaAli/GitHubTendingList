@@ -2,10 +2,10 @@ package com.rana.data
 
 
 import com.rana.data.datasource.RemoteDataSource
-import com.rana.data.models.entity.RepositoryItemEntity
 import com.rana.data.models.response.RepositoryItemResponse
-import com.rana.data.repository.RepositoryGateway
 import com.rana.data.repository.RepositoryGatewayImp
+import com.rana.domain.entity.RepositoryItemEntity
+import com.rana.domain.repository.RepositoryGateway
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
 import io.mockk.coEvery

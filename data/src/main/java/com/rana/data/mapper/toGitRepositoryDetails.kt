@@ -1,7 +1,7 @@
 package com.rana.data.mapper
 
 import com.rana.data.models.response.RepositoryItemResponse
-import com.rana.data.models.entity.RepositoryItemEntity
+import com.rana.domain.entity.RepositoryItemEntity
 
 fun List<RepositoryItemResponse>.toRepositoryEntity(): List<RepositoryItemEntity> {
     return map {

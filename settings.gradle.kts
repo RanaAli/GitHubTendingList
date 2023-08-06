@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "GithubTendingList"
 include(":app")
 include(":data")
+include(":domain")
