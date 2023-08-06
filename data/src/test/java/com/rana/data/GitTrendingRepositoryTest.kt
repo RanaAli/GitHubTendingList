@@ -3,9 +3,9 @@ package com.rana.data
 
 import com.rana.data.datasource.RemoteDataSource
 import com.rana.data.models.response.RepositoryItemResponse
-import com.rana.data.repository.RepositoryGatewayImp
+import com.rana.data.repository.GitTrendingRepositoryImp
 import com.rana.domain.entity.RepositoryItemEntity
-import com.rana.domain.repository.RepositoryGateway
+import com.rana.domain.repository.GitTrendingRepository
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
@@ -19,17 +19,17 @@ import org.junit.Before
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class RepositoryGatewayTest {
+class GitTrendingRepositoryTest {
 
     @MockK
     private lateinit var remoteDataSource: RemoteDataSource
 
-    private lateinit var repositoryGateWay: RepositoryGateway
+    private lateinit var gitTrendingRepositoryGateWay: GitTrendingRepository
 
     @Before
     fun setup() {
         MockKAnnotations.init(this)
-        repositoryGateWay = RepositoryGatewayImp(remoteDataSource)
+        gitTrendingRepositoryGateWay = GitTrendingRepositoryImp(remoteDataSource)
     }
     @After
     fun tearDown() {
@@ -43,7 +43,7 @@ class RepositoryGatewayTest {
         coEvery { remoteDataSource.getRepositories() } returns Result.success(repos)
 
         //When get repositories
-        val result = repositoryGateWay.getRepositories()
+        val result = gitTrendingRepositoryGateWay.getRepositories()
         val expected = listOf(RepositoryItemEntity(name = "Test"))
         //Then result is success map to domain object successful
         assertThat(result.isSuccess, `is`(true))

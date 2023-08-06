@@ -2,6 +2,6 @@ package com.rana.domain.repository
 
 import com.rana.domain.entity.RepositoryItemEntity
 
-interface RepositoryGateway {
+interface GitTrendingRepository {
     suspend fun getRepositories(): Result<List<RepositoryItemEntity>>
 }
