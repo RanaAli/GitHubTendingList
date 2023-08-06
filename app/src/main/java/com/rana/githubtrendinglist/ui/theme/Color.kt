@@ -1,4 +1,4 @@
-package com.rana.githubtendinglist.ui.theme
+package com.rana.githubtrendinglist.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

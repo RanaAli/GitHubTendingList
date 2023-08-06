@@ -1,4 +1,4 @@
-package com.rana.githubtendinglist.ui.theme
+package com.rana.githubtrendinglist.ui.theme
 
 import android.app.Activity
 import android.os.Build
