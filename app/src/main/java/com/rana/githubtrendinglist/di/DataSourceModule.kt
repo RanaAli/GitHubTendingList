@@ -1,6 +1,6 @@
 package com.rana.githubtrendinglist.di
 
-import com.rana.data.datasource.RemoteDataSource
+import com.rana.data.datasource.RepoDataSource
 import com.rana.data.datasource.RepositoriesRemoteDataSource
 import dagger.Binds
 import dagger.Module
@@ -11,5 +11,5 @@ import dagger.hilt.components.SingletonComponent
 @Module
 interface DataSourceModuleBind {
     @Binds
-    abstract fun bindRemoteDataSource(repositoriesRemoteDataSource: RepositoriesRemoteDataSource): RemoteDataSource
+    abstract fun bindRemoteDataSource(repositoriesRemoteDataSource: RepositoriesRemoteDataSource): RepoDataSource
 }

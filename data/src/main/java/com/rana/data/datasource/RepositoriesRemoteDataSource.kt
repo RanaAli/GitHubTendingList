@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class RepositoriesRemoteDataSource @Inject constructor(
     private val repositoryApiService: GitHubApi
-) : RemoteDataSource {
+) : RepoDataSource {
     override suspend fun getRepositories(): Result<List<RepositoryItemResponse>> {
         return try {
             val repositories = repositoryApiService.getRepositories()

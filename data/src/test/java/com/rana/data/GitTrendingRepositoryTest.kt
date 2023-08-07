@@ -1,7 +1,7 @@
 package com.rana.data
 
 
-import com.rana.data.datasource.RemoteDataSource
+import com.rana.data.datasource.RepoDataSource
 import com.rana.data.models.response.RepositoryItemResponse
 import com.rana.data.repository.GitTrendingRepositoryImp
 import com.rana.domain.entity.RepositoryItemEntity
@@ -22,7 +22,7 @@ import org.junit.Test
 class GitTrendingRepositoryTest {
 
     @MockK
-    private lateinit var remoteDataSource: RemoteDataSource
+    private lateinit var remoteDataSource: RepoDataSource
 
     private lateinit var gitTrendingRepositoryGateWay: GitTrendingRepository
 

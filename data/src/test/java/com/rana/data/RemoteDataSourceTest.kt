@@ -2,7 +2,7 @@ package com.rana.data
 
 
 import com.google.gson.Gson
-import com.rana.data.datasource.RemoteDataSource
+import com.rana.data.datasource.RepoDataSource
 import com.rana.data.datasource.RepositoriesRemoteDataSource
 import com.rana.data.models.response.RepositoryResponse
 import com.rana.data.remote.GitHubApi
@@ -23,7 +23,7 @@ class RemoteDataSourceTest {
     @MockK
     private lateinit var apiService: GitHubApi
 
-    private lateinit var remoteDataSource: RemoteDataSource
+    private lateinit var remoteDataSource: RepoDataSource
 
     @Before
     fun setup() {
