@@ -46,6 +46,10 @@ dependencies {
 
     implementation(libs.hilt.android)
 
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
     testImplementation(libs.testing.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
