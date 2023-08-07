@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.rana.githubtendinglist.R
+import com.rana.githubtrendinglist.list.component.RetryScreen
 import com.rana.githubtrendinglist.list.component.ShimmerList
 import com.rana.githubtrendinglist.list.component.TrendingList
 import com.rana.githubtrendinglist.list.state.TrendingAction
@@ -36,7 +37,7 @@ fun TrendingScreen(
         ) {
             when {
                 trendingState.isLoading -> ShimmerList()
-                trendingState.isError -> {}
+                trendingState.isError -> RetryScreen { event(TrendingAction.GetTrendingRepos) }
                 else -> TrendingList(trendingRepos = trendingState.repos)
             }
         }

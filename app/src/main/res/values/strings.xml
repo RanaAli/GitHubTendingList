@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">GithubTendingList</string>
+    <string name="retry">RETRY</string>
+    <string name="error_title">Something went wrong..</string>
+    <string name="error_subtitle">An alien is blocking your signal.</string>
     <string name="description">Repo avatar\n</string>
     <string name="trending">Trending</string>
 </resources>
