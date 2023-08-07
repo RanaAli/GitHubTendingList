@@ -3,6 +3,7 @@ package com.rana.data.repository
 import android.util.Log
 import com.rana.data.datasource.LocalDataSource
 import com.rana.data.datasource.RemoteDataSource
+import com.rana.data.models.RepositoryItemDto
 import com.rana.data.utils.SharedPrefsHelper
 import com.rana.data.utils.isTimeWithInInterval
 import com.rana.domain.entity.RepositoryItemEntity
@@ -18,7 +19,7 @@ class GitTrendingRepositoryImp @Inject constructor(
     GitTrendingRepository {
     override suspend fun getRepositories(): Result<List<RepositoryItemEntity>> {
 
-        val syncUpIntervalInSeconds = 2L * 3_600
+        val syncUpIntervalInSeconds = 2L * 3_600 // 2 hours
         val isCacheAvailable = localDataSource.isReposCacheAvailable() > 0
         val lastSyncUpTime =
             sharedPrefsHelper[SharedPrefsHelper.PREF_KEY_REPO_LAST_UPDATED_TIME, 0L]
@@ -38,7 +39,7 @@ class GitTrendingRepositoryImp @Inject constructor(
 
             if (repos.isSuccess) {
                 localDataSource.deleteAllTrendingRepos()
-//                localDataSource.saveRepositories(repos.getOrThrow())
+                localDataSource.saveRepositories(repos.getOrThrow().toDTO())
                 sharedPrefsHelper.put(
                     SharedPrefsHelper.PREF_KEY_REPO_LAST_UPDATED_TIME,
                     System.currentTimeMillis()
@@ -47,7 +48,23 @@ class GitTrendingRepositoryImp @Inject constructor(
 
             return repos
         }
-
-
     }
+}
+
+private fun List<RepositoryItemEntity>.toDTO(): List<RepositoryItemDto> {
+    val finalList = mutableListOf<RepositoryItemDto>()
+
+    forEachIndexed{ index, item ->
+        finalList.add(RepositoryItemDto(
+            uid = index,
+            name = item.name,
+            avatar = item.avatar,
+            score = item.score,
+            url = item.url,
+            description = item.description,
+            language = item.language
+        ))
+    }
+
+    return finalList
 }
