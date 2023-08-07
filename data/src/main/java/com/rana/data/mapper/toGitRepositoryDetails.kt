@@ -3,7 +3,7 @@ package com.rana.data.mapper
 import com.rana.data.models.response.RepositoryItemResponse
 import com.rana.domain.entity.RepositoryItemEntity
 
-fun List<RepositoryItemResponse>.toRepositoryEntity(): List<RepositoryItemEntity> {
+fun List<RepositoryItemResponse>.toRepositoryItemEntity(): List<RepositoryItemEntity> {
     return map {
         RepositoryItemEntity(
             name = it.name ?: "",
