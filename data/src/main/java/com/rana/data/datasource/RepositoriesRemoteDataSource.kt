@@ -3,8 +3,9 @@ package com.rana.data.datasource
 import com.rana.data.models.response.RepositoryItemResponse
 import com.rana.data.remote.GitHubApi
 import java.io.IOException
+import javax.inject.Inject
 
-class RepositoriesRemoteDataSource constructor(
+class RepositoriesRemoteDataSource @Inject constructor(
     private val repositoryApiService: GitHubApi
 ) : RemoteDataSource {
     override suspend fun getRepositories(): Result<List<RepositoryItemResponse>> {

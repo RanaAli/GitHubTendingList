@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GithubTendingList</string>
+    <string name="description">Repo avatar\n</string>
+    <string name="trending">Trending</string>
 </resources>

@@ -1,5 +1,6 @@
 [versions]
 agp = "8.1.0"
+kapt = "8.1.0"
 mockk = "1.13.3"
 org-jetbrains-kotlin-android = "1.9.0"
 
@@ -9,10 +10,13 @@ lifecycle = "2.7.0-alpha01"
 compose-bom = "2023.06.01"
 retrofit = "2.9.0"
 retrofit-okhttp = "4.11.0"
+hilt = "2.47"
+lottie = "6.1.0"
+coil = "2.4.0"
 
 junit = "4.13.2"
 testRunner = "1.1.5"
-espresso = "3.6.0-alpha01"
+espresso = "3.5.1"
 appcompat = "1.6.1"
 material = "1.9.0"
 coroutines-test = "1.7.3"
@@ -48,12 +52,19 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
+hilt-android-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-kapt = { id = "kotlin-kapt", version = "kapt" }
 
 
 [bundles]

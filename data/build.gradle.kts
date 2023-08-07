@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    api(project(mapOf("path" to ":domain")))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.appcompat)
@@ -42,6 +43,8 @@ dependencies {
     implementation(libs.retrofit.okhttp3)
     implementation(libs.retrofit.gson)
     implementation(libs.retrofit.okhttp3.logging.interceptor)
+
+    implementation(libs.hilt.android)
 
     testImplementation(libs.testing.junit)
     testImplementation(libs.kotlinx.coroutines.test)

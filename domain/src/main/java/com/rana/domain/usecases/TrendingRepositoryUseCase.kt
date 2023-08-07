@@ -1,10 +1,11 @@
 package com.rana.domain.usecases
 
 import com.rana.domain.repository.GitTrendingRepository
+import javax.inject.Inject
 
 
-class TrendingRepositoryUseCase constructor(
+class TrendingRepositoryUseCase @Inject constructor(
     private val searchRepository: GitTrendingRepository
-) {
-    suspend operator fun invoke() = searchRepository.getRepositories()
+): UseCase() {
+    override suspend operator fun invoke() = searchRepository.getRepositories()
 }

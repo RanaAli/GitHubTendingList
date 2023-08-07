@@ -1,8 +1,9 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.com.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
     id("kotlin-kapt")
     id("com.github.ben-manes.versions")
+    alias(libs.plugins.hilt.android.gradle)
 }
 
 android {
@@ -50,14 +51,23 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/gradle/incremental.annotation.processors"
         }
     }
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":data")))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.runtime.ktx)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    implementation(libs.coil.compose)
+
+    implementation(libs.lottie.compose)
 
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
@@ -68,7 +78,15 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.okhttp3)
+    implementation(libs.retrofit.gson)
+    implementation(libs.retrofit.okhttp3.logging.interceptor)
+
     testImplementation(libs.testing.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    
     androidTestImplementation(libs.testing.testRunner)
     androidTestImplementation(libs.testing.espresso)
     androidTestImplementation(libs.testing.ui.junit)
