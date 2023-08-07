@@ -5,4 +5,5 @@
     <string name="error_subtitle">An alien is blocking your signal.</string>
     <string name="description">Repo avatar\n</string>
     <string name="trending">Trending</string>
+    <string name="dark_theme">Dark mode\n</string>
 </resources>

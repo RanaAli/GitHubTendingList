@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.rana.githubtendinglist.R
+import com.rana.githubtrendinglist.list.component.DarkModeMenu
 import com.rana.githubtrendinglist.list.component.RetryScreen
 import com.rana.githubtrendinglist.list.component.ShimmerList
 import com.rana.githubtrendinglist.list.component.TrendingList
@@ -28,7 +29,7 @@ fun TrendingScreen(
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text(text = stringResource(id = R.string.trending)) },
-                actions = { }
+                actions = { DarkModeMenu(isDarkMode = isDarkMode, toggleDarkMode = toggleTheme) }
             )
         }
     ) { padding ->
