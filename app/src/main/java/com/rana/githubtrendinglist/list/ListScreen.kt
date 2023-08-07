@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.rana.githubtendinglist.R
+import com.rana.githubtrendinglist.list.component.ShimmerList
 import com.rana.githubtrendinglist.list.component.TrendingList
 import com.rana.githubtrendinglist.list.state.TrendingAction
 import com.rana.githubtrendinglist.list.state.TrendingState
@@ -34,7 +35,7 @@ fun TrendingScreen(
             modifier = Modifier.padding(padding),
         ) {
             when {
-                trendingState.isLoading -> {}
+                trendingState.isLoading -> ShimmerList()
                 trendingState.isError -> {}
                 else -> TrendingList(trendingRepos = trendingState.repos)
             }
