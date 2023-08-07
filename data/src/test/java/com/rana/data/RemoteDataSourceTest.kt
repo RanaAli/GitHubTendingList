@@ -3,7 +3,7 @@ package com.rana.data
 
 import com.google.gson.Gson
 import com.rana.data.datasource.RepoDataSource
-import com.rana.data.datasource.RepositoriesRemoteDataSource
+import com.rana.data.datasource.RemoteDataSource
 import com.rana.data.models.response.RepositoryResponse
 import com.rana.data.remote.GitHubApi
 import io.mockk.MockKAnnotations
@@ -28,7 +28,7 @@ class RemoteDataSourceTest {
     @Before
     fun setup() {
         MockKAnnotations.init(this)
-        remoteDataSource = RepositoriesRemoteDataSource(apiService)
+        remoteDataSource = RemoteDataSource(apiService)
     }
 
     @After

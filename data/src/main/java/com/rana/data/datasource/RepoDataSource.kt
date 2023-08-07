@@ -1,8 +1,8 @@
 package com.rana.data.datasource
 
-import com.rana.data.models.response.RepositoryItemResponse
+import com.rana.domain.entity.RepositoryItemEntity
 
 
 interface RepoDataSource {
-    suspend fun getRepositories():Result<List<RepositoryItemResponse>>
+    suspend fun getRepositories(): Result<List<RepositoryItemEntity>>
 }

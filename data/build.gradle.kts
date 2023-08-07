@@ -1,15 +1,16 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.com.android.library)
+    id("kotlin-kapt")
     alias(libs.plugins.org.jetbrains.kotlin.android)
 }
 
 android {
     namespace = "com.rana.data"
-    compileSdk = 33
+    compileSdk = Versions.compileAndTargetSDK
 
     defaultConfig {
-        minSdk = 21
+        minSdk = Versions.minSDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,11 +25,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Versions.jvmTarget
     }
 }
 
@@ -47,7 +48,8 @@ dependencies {
     implementation(libs.hilt.android)
 
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.compiler)
+    annotationProcessor(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 
     testImplementation(libs.testing.junit)
@@ -56,4 +58,7 @@ dependencies {
 
     androidTestImplementation(libs.testing.testRunner)
     androidTestImplementation(libs.testing.espresso)
+
+
+
 }
