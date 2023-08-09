@@ -1,4 +1,4 @@
-package com.rana.githubtrendinglist.list.component
+package com.rana.githubtrendinglist.ui.list.component
 
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility

@@ -1,4 +1,4 @@
-package com.rana.githubtrendinglist.list
+package com.rana.githubtrendinglist.ui.list
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -10,12 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.rana.githubtendinglist.R
-import com.rana.githubtrendinglist.list.component.DarkModeMenu
-import com.rana.githubtrendinglist.list.component.RetryScreen
-import com.rana.githubtrendinglist.list.component.ShimmerList
-import com.rana.githubtrendinglist.list.component.TrendingList
-import com.rana.githubtrendinglist.list.state.TrendingAction
-import com.rana.githubtrendinglist.list.state.TrendingState
+import com.rana.githubtrendinglist.ui.list.component.DarkModeMenu
+import com.rana.githubtrendinglist.ui.list.component.RetryScreen
+import com.rana.githubtrendinglist.ui.list.component.ShimmerList
+import com.rana.githubtrendinglist.ui.list.component.TrendingList
+import com.rana.githubtrendinglist.ui.list.state.TrendingAction
+import com.rana.githubtrendinglist.ui.list.state.TrendingState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -8,8 +8,8 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.rana.domain.entity.RepositoryItemEntity
-import com.rana.githubtrendinglist.list.TrendingScreen
-import com.rana.githubtrendinglist.list.state.TrendingState
+import com.rana.githubtrendinglist.ui.list.TrendingScreen
+import com.rana.githubtrendinglist.ui.list.state.TrendingState
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Rule

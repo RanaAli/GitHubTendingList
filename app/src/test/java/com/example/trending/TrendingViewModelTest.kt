@@ -3,7 +3,7 @@ package com.example.trending
 import com.example.CoroutineTestRule
 import com.rana.domain.entity.RepositoryItemEntity
 import com.rana.domain.repository.GitTrendingRepository
-import com.rana.githubtrendinglist.list.ListViewModel
+import com.rana.githubtrendinglist.ui.list.ListViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
 import io.mockk.coEvery

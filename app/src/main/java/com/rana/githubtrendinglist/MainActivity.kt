@@ -13,8 +13,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.rana.githubtrendinglist.list.ListViewModel
-import com.rana.githubtrendinglist.list.TrendingScreen
+import com.rana.githubtrendinglist.ui.list.ListViewModel
+import com.rana.githubtrendinglist.ui.list.TrendingScreen
 import com.rana.githubtrendinglist.ui.theme.GithubTendingListTheme
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,4 +1,4 @@
-package com.rana.githubtrendinglist.list
+package com.rana.githubtrendinglist.ui.list
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rana.domain.usecases.TrendingRepositoryUseCase
-import com.rana.githubtrendinglist.list.state.TrendingAction
-import com.rana.githubtrendinglist.list.state.TrendingState
+import com.rana.githubtrendinglist.ui.list.state.TrendingAction
+import com.rana.githubtrendinglist.ui.list.state.TrendingState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.rana.githubtrendinglist.list.state
+package com.rana.githubtrendinglist.ui.list.state
 
 import com.rana.domain.entity.RepositoryItemEntity
 

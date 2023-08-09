@@ -1,4 +1,4 @@
-package com.rana.githubtrendinglist.list.component
+package com.rana.githubtrendinglist.ui.list.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

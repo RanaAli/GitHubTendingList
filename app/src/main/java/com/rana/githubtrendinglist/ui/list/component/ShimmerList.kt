@@ -1,4 +1,4 @@
-package com.rana.githubtrendinglist.list.component
+package com.rana.githubtrendinglist.ui.list.component
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
