@@ -9,6 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.rana.domain.entity.RepositoryItemEntity
 import com.rana.githubtendinglist.R
 import com.rana.githubtrendinglist.ui.list.component.DarkModeMenu
 import com.rana.githubtrendinglist.ui.list.component.RetryScreen
@@ -44,3 +46,35 @@ fun TrendingScreen(
         }
     }
 }
+
+@Composable
+@Preview
+fun Preview() {
+    TrendingScreen(
+        trendingState = TrendingState(
+            repos = getFakeRepos()
+        ),
+        isDarkMode = false,
+        event = {},
+        toggleTheme = {}
+    )
+}
+
+@Composable
+private fun getFakeRepos() = listOf(
+    RepositoryItemEntity(
+        name = "Name 1",
+        description = "Description....",
+        avatar = "https://avatars.githubusercontent.com/u/3034245?v=4"
+    ),
+    RepositoryItemEntity(
+        name = "Name 2",
+        description = "Description....",
+        avatar = "https://avatars.githubusercontent.com/u/3034245?v=4"
+    ),
+    RepositoryItemEntity(
+        name = "Name 3",
+        description = "Description....",
+        avatar = "https://avatars.githubusercontent.com/u/3034245?v=4"
+    )
+)
