@@ -14,10 +14,10 @@ import com.rana.githubtrendinglist.ui.theme.ShimmerColorShades
 
 @Composable
 fun ShimmerAnimation(
-    ShimmerItem: @Composable (Brush) -> Unit
+    shimmerItem: @Composable (Brush) -> Unit
 ) {
 
-    val transition = rememberInfiniteTransition()
+    val transition = rememberInfiniteTransition(label = "")
     val translateAnim by transition.animateFloat(
         initialValue = 0f,
         targetValue = 1000f,
@@ -25,7 +25,7 @@ fun ShimmerAnimation(
             // Tween Animates between values over specified [durationMillis]
             tween(durationMillis = 1200, easing = FastOutSlowInEasing),
             RepeatMode.Restart
-        )
+        ), label = ""
     )
 
     val brush = Brush.linearGradient(
@@ -34,5 +34,5 @@ fun ShimmerAnimation(
         end = Offset(translateAnim, translateAnim)
     )
 
-    ShimmerItem(brush)
+    shimmerItem(brush)
 }

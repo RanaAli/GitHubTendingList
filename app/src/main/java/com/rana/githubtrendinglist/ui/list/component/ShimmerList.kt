@@ -23,7 +23,7 @@ import com.rana.githubtrendinglist.ui.theme.GithubTendingListTheme
 
 @Composable
 fun ShimmerList() {
-    ShimmerAnimation { brush ->
+    ShimmerAnimation { _ ->
         ShimmerAnimation { brush ->
             LazyColumn(modifier = Modifier.testTag("shimmerList")) {
                 repeat(10) {
