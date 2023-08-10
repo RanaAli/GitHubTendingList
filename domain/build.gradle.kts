@@ -10,6 +10,7 @@ java {
 }
 
 dependencies {
+    implementation(libs.kotlinx.coroutines.test)
     implementation(libs.hilt.android.compiler)
 }
 

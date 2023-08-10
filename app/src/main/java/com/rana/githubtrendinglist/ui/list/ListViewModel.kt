@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -36,10 +37,14 @@ class ListViewModel @Inject constructor(
 
             _trendingState.value = TrendingState.Loading
 
-            withContext(IO) { useCase.invoke() }.onSuccess {
-                _trendingState.value = TrendingState.Success(it)
-            }.onFailure {
-                _trendingState.value = TrendingState.Error(it.message.orEmpty())
+            withContext(IO) {
+                useCase.invoke().flowOn(IO).collect {
+                    it.onSuccess {
+                        _trendingState.value = TrendingState.Success(it)
+                    }.onFailure {
+                        _trendingState.value = TrendingState.Error(it.message.orEmpty())
+                    }
+                }
             }
         }
     }
