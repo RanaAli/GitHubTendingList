@@ -18,6 +18,10 @@ import com.rana.githubtrendinglist.ui.list.component.ShimmerList
 import com.rana.githubtrendinglist.ui.list.component.TrendingList
 import com.rana.githubtrendinglist.ui.list.state.TrendingAction
 import com.rana.githubtrendinglist.ui.list.state.TrendingState
+import com.rana.githubtrendinglist.ui.list.state.TrendingState.Empty
+import com.rana.githubtrendinglist.ui.list.state.TrendingState.Error
+import com.rana.githubtrendinglist.ui.list.state.TrendingState.Loading
+import com.rana.githubtrendinglist.ui.list.state.TrendingState.Success
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,10 +42,11 @@ fun TrendingScreen(
         Box(
             modifier = Modifier.padding(padding),
         ) {
-            when {
-                trendingState.isLoading -> ShimmerList()
-                trendingState.isError -> RetryScreen { event(TrendingAction.GetTrendingRepos) }
-                else -> TrendingList(trendingRepos = trendingState.repos)
+            when (trendingState) {
+                is Empty -> Unit
+                is Error -> RetryScreen { event(TrendingAction.GetTrendingRepos) }
+                Loading -> ShimmerList()
+                is Success -> TrendingList(trendingRepos = trendingState.repo)
             }
         }
     }
@@ -51,9 +56,7 @@ fun TrendingScreen(
 @Preview
 fun Preview() {
     TrendingScreen(
-        trendingState = TrendingState(
-            repos = getFakeRepos()
-        ),
+        trendingState = Success(getFakeRepos()),
         isDarkMode = false,
         event = {},
         toggleTheme = {}
