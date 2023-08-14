@@ -1,15 +1,15 @@
 package com.rana.githubtrendinglist.ui.list
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rana.domain.usecases.TrendingRepositoryUseCase
 import com.rana.githubtrendinglist.ui.list.state.TrendingAction
 import com.rana.githubtrendinglist.ui.list.state.TrendingState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -19,8 +19,8 @@ class ListViewModel @Inject constructor(
     private val useCase: TrendingRepositoryUseCase
 ) : ViewModel() {
 
-    var trendingState by mutableStateOf(TrendingState())
-        private set
+    private var _trendingState = MutableStateFlow<TrendingState>(TrendingState.Empty)
+    val trendingState = _trendingState.asStateFlow()
 
     init {
         reducer(TrendingAction.GetTrendingRepos)
@@ -35,13 +35,16 @@ class ListViewModel @Inject constructor(
     private fun getTrendingRepos() {
         viewModelScope.launch {
 
-            trendingState = TrendingState(isLoading = true)
-            val result = withContext(Dispatchers.IO) { useCase.invoke() }
+            _trendingState.value = TrendingState.Loading
 
-            result.onSuccess {
-                trendingState = TrendingState(repos = it)
-            }.onFailure {
-                trendingState = TrendingState(isError = true)
+            withContext(IO) {
+                useCase.invoke().flowOn(IO).collect {
+                    it.onSuccess {
+                        _trendingState.value = TrendingState.Success(it)
+                    }.onFailure {
+                        _trendingState.value = TrendingState.Error(it.message.orEmpty())
+                    }
+                }
             }
         }
     }

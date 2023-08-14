@@ -2,8 +2,12 @@ package com.rana.githubtrendinglist.ui.list.state
 
 import com.rana.domain.entity.RepositoryItemEntity
 
-data class TrendingState(
-    val isLoading: Boolean = false,
-    val isError: Boolean = false,
-    val repos: List<RepositoryItemEntity> = emptyList()
-)
+sealed class TrendingState {
+    data object Loading : TrendingState()
+    data class Error(val error: String) : TrendingState()
+    data class Success(val repo: List<RepositoryItemEntity>) :
+        TrendingState()
+
+    data object Empty : TrendingState()
+
+}

@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.rana.data.models.RepositoryItemDto
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Data Access Object for the UserProductCart entity
@@ -17,7 +18,7 @@ interface TrendingRepoDao {
      * @return all repos.
      */
     @Query("SELECT * FROM RepositoryItemDto")
-     fun allTrendingRepos(): List<RepositoryItemDto>
+     fun allTrendingRepos(): Flow<List<RepositoryItemDto>>
 
     /**
      * Insert all repose

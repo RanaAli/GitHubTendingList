@@ -40,9 +40,8 @@ class TrendingScreenTest {
             TrendingScreen(
                 trendingState = state,
                 isDarkMode = isSystemInDarkTheme(),
-                event = {},
-                {}
-            )
+                event = {}
+            ) {}
         }
 
         // Check if top app bar title is displayed correctly
@@ -61,9 +60,8 @@ class TrendingScreenTest {
             TrendingScreen(
                 trendingState = state,
                 isDarkMode = isSystemInDarkTheme(),
-                event = {},
-                {}
-            )
+                event = {}
+            ) {}
         }
 
         // Check if top app bar title is displayed correctly

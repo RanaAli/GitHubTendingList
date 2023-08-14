@@ -43,10 +43,7 @@ import com.rana.githubtendinglist.R
 import com.rana.githubtrendinglist.ui.theme.GithubTendingListTheme
 
 @Composable
-fun TrendingList(
-    modifier: Modifier = Modifier,
-    trendingRepos: List<RepositoryItemEntity>
-) {
+fun TrendingList(trendingRepos: List<RepositoryItemEntity>) {
     var selectedIndex by remember { mutableStateOf(0) }
 
     LazyColumn(Modifier.testTag("TrendingList")) {
@@ -81,11 +78,11 @@ fun TrendingListItem(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(trendingRepo.avatar)
                 .crossfade(true)
-                .listener(object : Listener{
+                .listener(object : Listener {
                     override fun onError(request: ImageRequest, result: ErrorResult) {
                         super.onError(request, result)
 
-                        Log.e("Item", "url = " + trendingRepo.avatar )
+                        Log.e("Item", "url = " + trendingRepo.avatar)
                     }
                 })
                 .build(),

@@ -1,26 +1,25 @@
 package com.rana.data.datasource
 
 import com.rana.data.mapper.toRepositoryItemEntity
-import com.rana.data.remote.GitHubApi
+import com.rana.data.remote.GitHubService
 import com.rana.domain.entity.RepositoryItemEntity
-import java.io.IOException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(
-    private val repositoryApiService: GitHubApi
-)  {
-     suspend fun getRepositories(): Result<List<RepositoryItemEntity>> {
-        return try {
-            val repositories = repositoryApiService.getRepositories()
-
-            return if (repositories.items != null) {
-                Result.success(repositories.items).map { it.toRepositoryItemEntity() }
-            } else {
-                Result.failure(Exception("No items found"))
+    private val repositoryApiService: GitHubService
+) {
+    suspend fun getRepositories(): Flow<Result<List<RepositoryItemEntity>>> {
+        return repositoryApiService
+            .getRepositories()
+            .map {
+                if (it.items != null) {
+                    Result.success(it.items).map { item -> item.toRepositoryItemEntity() }
+                } else {
+                    Result.failure(Exception("No items found"))
+                }
             }
-        } catch (e: IOException) {
-            Result.failure(e)
-        }
     }
-
 }
+
