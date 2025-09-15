@@ -9,6 +9,11 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
+kotlin {
+    jvmToolchain(17) // This tells Kotlin to use JDK 17 for compilation
+    // which then makes its default jvmTarget compatible.
+}
+
 dependencies {
     implementation(libs.kotlinx.coroutines.test)
     implementation(libs.hilt.android.compiler)
