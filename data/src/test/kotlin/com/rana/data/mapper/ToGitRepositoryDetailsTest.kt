@@ -118,4 +118,62 @@ class ToGitRepositoryDetailsTest {
         val result = responseList.toRepositoryItemEntity()
         assertEquals(expectedEntities, result)
     }
+
+    @Test
+    fun `toRepositoryItemEntity with large list maps all items correctly`() {
+        val largeList = (1..1000).map {
+            RepositoryItemResponse(
+                name = "Repo$it",
+                owner = OwnerResponse(avatarUrl = "avatar.url/$it"),
+                score = it.toString(),
+                url = "http://example.com/$it",
+                description = "Description $it",
+                language = if (it % 2 == 0) "Kotlin" else "Java"
+            )
+        }
+        val result = largeList.toRepositoryItemEntity()
+        assertEquals(1000, result.size)
+        assertEquals("Repo1", result[0].name)
+        assertEquals("avatar.url/1000", result[999].avatar)
+    }
+
+    @Test
+    fun `toRepositoryItemEntity with boundary values maps correctly`() {
+        val longString = "a".repeat(10000)
+        val specialChars = "!@#$%^&*()_+-=[]{}|;':,./<>?`~"
+        val responseList = listOf(
+            RepositoryItemResponse(
+                name = longString,
+                owner = OwnerResponse(avatarUrl = specialChars),
+                score = "9999999999",
+                url = longString,
+                description = specialChars,
+                language = longString
+            )
+        )
+        val result = responseList.toRepositoryItemEntity()
+        assertEquals(longString, result[0].name)
+        assertEquals(specialChars, result[0].avatar)
+        assertEquals("9999999999", result[0].score)
+        assertEquals(longString, result[0].url)
+        assertEquals(specialChars, result[0].description)
+        assertEquals(longString, result[0].language)
+    }
+
+    @Test
+    fun `toRepositoryItemEntity with invalid score value maps to default`() {
+        val responseList = listOf(
+            RepositoryItemResponse(
+                name = "RepoInvalidScore",
+                owner = OwnerResponse(avatarUrl = "avatar.url/invalid"),
+                score = "not_a_number",
+                url = "url_invalid",
+                description = "desc_invalid",
+                language = "Kotlin"
+            )
+        )
+        val result = responseList.toRepositoryItemEntity()
+        // If your mapping sets score to "0" for invalid values, check for that
+        assertEquals("0", result[0].score)
+    }
 }

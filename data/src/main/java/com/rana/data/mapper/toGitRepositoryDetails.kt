@@ -8,7 +8,7 @@ fun List<RepositoryItemResponse>.toRepositoryItemEntity(): List<RepositoryItemEn
         RepositoryItemEntity(
             name = it.name ?: "",
             avatar = it.owner?.avatarUrl ?: "",
-            score = it.score ?: "0",
+            score = it.score?.takeIf { s -> s.toDoubleOrNull() != null } ?: "0",
             url = it.url ?: "",
             description = it.description ?: "",
             language = it.language ?: ""

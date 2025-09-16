@@ -111,6 +111,18 @@ class LocalDataSourceTest {
         verify(mockDao).saveTrendingRepos(mockDtoList)
     }
 
+    @Test
+    fun `saveRepositories WHEN called with empty list THEN calls dao saveTrendingRepos with empty list`() = runTest {
+        // Given
+        val emptyList = emptyList<RepositoryItemDto>()
+
+        // When
+        localDataSource.saveRepositories(emptyList)
+
+        // Then
+        verify(mockDao).saveTrendingRepos(emptyList)
+    }
+
     // --- Tests for isReposCacheAvailable() ---
 
     @Test

@@ -29,8 +29,9 @@ fun formatDate(calendar: Calendar, pattern: String): String =
 fun convertedDate(inputPattern: String, outputPattern: String, stringDate: String): String {
     val originalFormat = SimpleDateFormat(inputPattern, Locale.US)
     val targetFormat = SimpleDateFormat(outputPattern, Locale.US)
-    val requiredFormat = originalFormat.parse(stringDate)
-    return targetFormat.format(requiredFormat)
+    return originalFormat.parse(stringDate)?.let { date ->
+        targetFormat.format(date)
+    } ?: stringDate // Return original string if parsing fails
 }
 
 fun isTimeWithInInterval(valueToCheckInSeconds: Long, startTime: Long, endTime: Long): Boolean {

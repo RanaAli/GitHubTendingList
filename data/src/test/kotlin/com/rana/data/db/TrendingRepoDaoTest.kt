@@ -1,8 +1,9 @@
 package com.rana.data.db
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider // Common for Robolectric or instrumented tests
+import androidx.test.core.app.ApplicationProvider
 import com.rana.data.models.RepositoryItemDto
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -13,12 +14,16 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner // Assuming Robolectric
-import org.robolectric.annotation.Config // If specific SDK is needed
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
 @ExperimentalCoroutinesApi
-@RunWith(RobolectricTestRunner::class) // Or your preferred test runner for Android context
-@Config(sdk = [28]) // Example SDK config for Robolectric, adjust as needed
+@RunWith(RobolectricTestRunner::class)
+@Config(
+    sdk = [33], // Updated to Android 13
+    manifest = Config.NONE,
+    application = Application::class
+)
 class TrendingRepoDaoTest {
 
     private lateinit var appDatabase: AppDatabase
@@ -154,5 +159,49 @@ class TrendingRepoDaoTest {
 
         trendingRepoDao.deleteAllTrendingRepos()
         assertEquals(0, flow.first().size)
+    }
+
+    @Test
+    fun `saveTrendingRepos allows empty fields and retrieves them correctly`() = runTest {
+        // Use empty strings for non-nullable fields
+        val repoWithEmpties = RepositoryItemDto(
+            uid = 3,
+            name = "RepoEmpties",
+            avatar = "",
+            score = "",
+            url = "",
+            description = "",
+            language = ""
+        )
+        trendingRepoDao.saveTrendingRepos(listOf(repoWithEmpties))
+        val repos = trendingRepoDao.allTrendingRepos().first()
+        val retrieved = repos.find { it.uid == 3 }
+        assertEquals("RepoEmpties", retrieved?.name)
+        assertEquals("", retrieved?.avatar)
+        assertEquals("", retrieved?.score)
+        assertEquals("", retrieved?.url)
+        assertEquals("", retrieved?.description)
+        assertEquals("", retrieved?.language)
+    }
+
+    @Test
+    fun `saveTrendingRepos handles large data sets`() = runTest {
+        val largeList = (1..1000).map {
+            RepositoryItemDto(
+                uid = it,
+                name = "Repo$it",
+                avatar = "avatar$it",
+                score = it.toString(),
+                url = "url$it",
+                description = "Desc$it",
+                language = if (it % 2 == 0) "Kotlin" else "Java"
+            )
+        }
+        trendingRepoDao.saveTrendingRepos(largeList)
+        val count = trendingRepoDao.isReposCacheAvailable()
+        assertEquals(1000, count)
+        val repos = trendingRepoDao.allTrendingRepos().first()
+        assertEquals(1000, repos.size)
+        assertTrue(repos.any { it.name == "Repo500" })
     }
 }

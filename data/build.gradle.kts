@@ -32,6 +32,13 @@ android {
         jvmToolchain(21) // This tells Kotlin to use JDK 17 for compilation
         // which then makes its default jvmTarget compatible.
     }
+
+    // Enable Room annotation processing for tests
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -60,12 +67,17 @@ dependencies {
     testImplementation(libs.mockito.kotlin) // Added
 
     // Added for Robolectric tests
-    testImplementation("androidx.test:core-ktx:1.5.0")
-    testImplementation("org.robolectric:robolectric:4.11.1")
+    testImplementation(libs.core.ktx)
+    testImplementation(libs.robolectric)
+
+    // Room testing dependencies
+    testImplementation(libs.androidx.room.testing)
+    kaptTest(libs.androidx.room.compiler)
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.robolectric)
 
     androidTestImplementation(libs.testing.testRunner)
     androidTestImplementation(libs.testing.espresso)
-
-
 
 }
