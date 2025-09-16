@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("com.github.ben-manes.versions")
     alias(libs.plugins.hilt.android.gradle)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {

@@ -2,6 +2,8 @@
 agp = "8.13.0"
 kapt = "1.9.23"
 mockk = "1.14.5"
+mockito = "5.19.0"
+mockitoKotlin = "6.0.0" # Added
 org-jetbrains-kotlin-android = "2.2.20"
 
 kotlinCompilerExtVersion = "1.5.8"
@@ -21,7 +23,7 @@ espresso = "3.7.0"
 appcompat = "1.7.1"
 material = "1.13.0"
 coroutines-test = "1.10.2"
-org-jetbrains-kotlin-jvm = "1.9.23"
+org-jetbrains-kotlin-jvm = "2.2.20"
 
 [libraries]
 #core
@@ -50,10 +52,14 @@ testing-junit = { group = "junit", name = "junit", version.ref = "junit" }
 testing-testRunner = { group = "androidx.test.ext", name = "junit", version.ref = "testRunner" }
 testing-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 testing-ui-Junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" } # Changed
+
+
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
@@ -70,6 +76,7 @@ org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org
 com-android-library = { id = "com.android.library", version.ref = "agp" }
 hilt-android-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-kapt = { id = "kotlin-kapt", version.ref = "kapt" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "org-jetbrains-kotlin-android" }
 
 
 [bundles]

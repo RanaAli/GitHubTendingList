@@ -56,6 +56,12 @@ dependencies {
     testImplementation(libs.testing.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
+    testImplementation(libs.mockito.core) // Added
+    testImplementation(libs.mockito.kotlin) // Added
+
+    // Added for Robolectric tests
+    testImplementation("androidx.test:core-ktx:1.5.0")
+    testImplementation("org.robolectric:robolectric:4.11.1")
 
     androidTestImplementation(libs.testing.testRunner)
     androidTestImplementation(libs.testing.espresso)
