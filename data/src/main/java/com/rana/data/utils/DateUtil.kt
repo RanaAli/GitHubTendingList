@@ -27,20 +27,26 @@ fun formatDate(calendar: Calendar, pattern: String): String =
     DateFormat.format(pattern, calendar).toString()
 
 fun convertedDate(inputPattern: String, outputPattern: String, stringDate: String): String {
-    val originalFormat = SimpleDateFormat(inputPattern, Locale.US)
-    val targetFormat = SimpleDateFormat(outputPattern, Locale.US)
-    return originalFormat.parse(stringDate)?.let { date ->
-        targetFormat.format(date)
-    } ?: stringDate // Return original string if parsing fails
+    return try {
+        val originalFormat = SimpleDateFormat(inputPattern, Locale.US).apply {
+            isLenient = false // Strict parsing
+        }
+        val targetFormat = SimpleDateFormat(outputPattern, Locale.US)
+        synchronized(originalFormat) {
+            originalFormat.parse(stringDate)?.let { date ->
+                synchronized(targetFormat) {
+                    targetFormat.format(date)
+                }
+            }
+        } ?: stringDate
+    } catch (e: Exception) {
+        // Handle both IllegalArgumentException (invalid pattern) and ParseException (invalid date)
+        stringDate
+    }
 }
 
 fun isTimeWithInInterval(valueToCheckInSeconds: Long, startTime: Long, endTime: Long): Boolean {
-    val startTimeInMinutes = TimeUnit.MILLISECONDS.toMinutes(startTime)
-    val endTimeInMinutes = TimeUnit.MILLISECONDS.toMinutes(endTime)
-    val valueToCheckInMinutes = TimeUnit.SECONDS.toMinutes(valueToCheckInSeconds)
-
-    Log.d("DateUtil", "${startTimeInMinutes - endTimeInMinutes}")
-    Log.d("DateUtil", "${startTimeInMinutes - endTimeInMinutes > valueToCheckInMinutes}")
-
-    return startTimeInMinutes - endTimeInMinutes > valueToCheckInMinutes
+    val valueToCheckInMillis = TimeUnit.SECONDS.toMillis(valueToCheckInSeconds)
+    val timeDifference = Math.abs(startTime - endTime)
+    return timeDifference > valueToCheckInMillis
 }
