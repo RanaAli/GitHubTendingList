@@ -78,22 +78,22 @@ class GitTrendingRepositoryImpTest {
         repository = GitTrendingRepositoryImp(remoteDataSource, localDataSource, sharedPrefsHelper)
     }
 
-//    @Test
-//    fun `getRepositories returns cached data when available and not expired`() = runTest {
-//        // Given
-//        coEvery { localDataSource.isReposCacheAvailable() } returns 1
-//        coEvery { localDataSource.getRepositories() } returns flowOf(Result.success(sampleEntities))
-//        every { sharedPrefsHelper[SharedPrefsHelper.PREF_KEY_REPO_LAST_UPDATED_TIME, 0L] } returns currentTime
-//
-//        // When
-//        val result = repository.getRepositories().first()
-//
-//        // Then
-//        assertTrue(result.isSuccess)
-//        assertEquals(sampleEntities, result.getOrNull())
-//        coVerify(exactly = 0) { remoteDataSource.getRepositories() }
-//        coVerify(exactly = 1) { localDataSource.getRepositories() }
-//    }
+    @Test
+    fun `getRepositories returns cached data when available and not expired`() = runTest {
+        // Given
+        coEvery { localDataSource.isReposCacheAvailable() } returns 1
+        coEvery { localDataSource.getRepositories() } returns flowOf(Result.success(sampleEntities))
+        every { sharedPrefsHelper[SharedPrefsHelper.PREF_KEY_REPO_LAST_UPDATED_TIME, 0L] } returns currentTime
+
+        // When
+        val result = repository.getRepositories().first()
+
+        // Then
+        assertTrue(result.isSuccess)
+        assertEquals(sampleEntities, result.getOrNull())
+        coVerify(exactly = 0) { remoteDataSource.getRepositories() }
+        coVerify(exactly = 1) { localDataSource.getRepositories() }
+    }
 
     @Test
     fun `getRepositories fetches from remote when cache is empty`() = runTest {
