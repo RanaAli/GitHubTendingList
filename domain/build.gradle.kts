@@ -5,12 +5,12 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 kotlin {
-    jvmToolchain(17) // This tells Kotlin to use JDK 17 for compilation
+    jvmToolchain(21) // This tells Kotlin to use JDK 17 for compilation
     // which then makes its default jvmTarget compatible.
 }
 
